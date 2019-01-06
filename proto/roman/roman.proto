@@ -1,0 +1,27 @@
+syntax="proto3";
+
+package roman;
+
+service Roman {
+    rpc ProcessAnalysis(TokenAnalysis) returns (Response);
+}
+
+message TokenAnalysis {
+    string key = 1;
+    string value = 2;
+    TokenAnalysis next = 3;
+}
+
+message Response {
+    int32 status = 1;
+    SuccessResponse response = 2;
+    ErrorResponse error = 3;
+}
+
+message SuccessResponse {
+    string result = 1;
+}
+
+message ErrorResponse {
+    string error_text = 1;
+}
